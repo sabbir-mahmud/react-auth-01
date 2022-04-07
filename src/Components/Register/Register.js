@@ -1,56 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import app from '../../Firebase/Firebase.init';
+import useRegister from '../../Hooks/useRegister';
 const Register = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const auth = getAuth(app);
-
     // sign In navigate button
     const navigate = useNavigate();
     const handleLoginlink = () => navigate('/');
 
-    // get display name
-    const handleDisplayName = (e) => setFirstName(e.target.value);
-    const handleLastName = (e) => setLastName(e.target.value);
-
-    // get email
-    const handleEmail = (e) => setEmail(e.target.value);
-
-    // get password
-    const handlePassword = (e) => setPassword(e.target.value);
-
-    // set user name
-    const handleUserName = () => {
-        const userName = firstName + ' ' + lastName;
-        updateProfile(auth.currentUser, {
-            displayName: userName
-        }).then(() => {
-            console.log('User name updated');
-            // Profile updated!
-            // ...
-        }).catch((error) => {
-            console.error(error);
-            // An error occurred
-            // ...
-        });
-    }
-
-    // register button
-    const handleRegister = (e) => {
-        e.preventDefault();
-        const displayName = firstName + ' ' + lastName;
-        console.log(email, password, displayName);
-        createUserWithEmailAndPassword(auth, email, password, displayName)
-            .then((result) => {
-                console.log(result)
-                handleUserName();
-            })
-            .catch((error) => console.error(error))
-    }
+    const [handleEmail, handlePassword, handleDisplayName, handleLastName, handleRegister] = useRegister();
 
     return (
         <form className="w-full mx-auto mt-14 max-w-lg">

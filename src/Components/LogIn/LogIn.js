@@ -1,42 +1,13 @@
-import React, { useState } from 'react';
+//  imports 
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
-import app from '../../Firebase/Firebase.init';
+import useLogin from '../../Hooks/useLogin';
 
 const LogIn = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    // Google auth provider
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth(app);
-
-    // sign In navigate button
+    // signUp navigate button
     const navigate = useNavigate();
     const handleRegisterlink = () => navigate('/register');
+    const [handleEmail, handlePassword, handleSignIn, googleLogin] = useLogin();
 
-    // get email
-    const handleEmail = (e) => setEmail(e.target.value);
-
-    // get password
-    const handlePassword = (e) => setPassword(e.target.value);
-
-    // sign in button
-    const handleSignIn = (e) => {
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((result) => {
-                console.log(result)
-            })
-            .catch((error) => console.error(error))
-    }
-
-
-    // logIn with google
-    const googleLogin = () => {
-        signInWithPopup(auth, provider)
-            .then(result => console.log(result))
-            .catch((error) => console.error(error))
-    }
     return (
         <div className="w-full mt-14 mx-auto max-w-xs">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
