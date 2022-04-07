@@ -6,11 +6,16 @@ const LogIn = () => {
     // signUp navigate button
     const navigate = useNavigate();
     const handleRegisterlink = () => navigate('/register');
-    const [handleEmail, handlePassword, handleSignIn, googleLogin] = useLogin();
+    const [user, error, handleEmail, handlePassword, handleSignIn, googleLogin] = useLogin();
+    console.log(user);
+    console.log(error);
 
     return (
         <div className="w-full mt-14 mx-auto max-w-xs">
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                {
+                    error ? <p className="text-red-500 text-xs italic">{error}</p> : null
+                }
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                         Email
