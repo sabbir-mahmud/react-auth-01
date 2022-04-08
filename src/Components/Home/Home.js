@@ -1,12 +1,9 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from 'firebase/auth';
-import app from '../../Firebase/Firebase.init';
+import AuthenticatedUser from '../../Hooks/useAuthUser';
 
-const auth = getAuth(app);
 
 const Home = () => {
-    const [user] = useAuthState(auth);
+    const [user] = AuthenticatedUser();
     return (
         <div>
             <h1>Home</h1>
