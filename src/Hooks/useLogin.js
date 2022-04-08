@@ -12,7 +12,7 @@ const useLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useError();
-    const [user, setUser] = useUser(null);
+    const [user, setUser] = useUser();
 
     const navigate = useNavigate();
 
@@ -40,7 +40,11 @@ const useLogin = () => {
     // logIn with google
     const googleLogin = () => {
         signInWithPopup(auth, provider)
-            .then(result => setUser(result.user))
+            .then(result => {
+                setUser(result.user);
+                setError(null);
+                navigate('/home');
+            })
             .catch((error) => console.error(error))
     }
 
