@@ -7,8 +7,6 @@ const LogIn = () => {
     const navigate = useNavigate();
     const handleRegisterlink = () => navigate('/register');
     const [user, error, handleEmail, handlePassword, handleSignIn, googleLogin] = useLogin();
-    console.log(user);
-    console.log(error);
 
     return (
         <div className="w-full mt-14 mx-auto max-w-xs">
