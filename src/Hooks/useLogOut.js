@@ -1,14 +1,12 @@
 import { getAuth, signOut } from "firebase/auth";
 import app from "../Firebase/Firebase.init";
-
-
 const auth = getAuth(app);
-
 
 const useLogOut = () => {
     signOut(auth).then(() => {
         // Sign-out successful.
-        console.log("sign out successful", auth);
+        console.log("sign out successful", auth)
+            ;
 
     }).catch((error) => {
         // An error happened.
