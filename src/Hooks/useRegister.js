@@ -3,14 +3,11 @@ import { useState } from "react";
 import app from "../Firebase/Firebase.init";
 
 const useRegister = () => {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const auth = getAuth(app);
-
-
 
     // get display name
     const handleDisplayName = (e) => setFirstName(e.target.value);

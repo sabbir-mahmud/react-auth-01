@@ -8,8 +8,6 @@ import useUser from "./useUser";
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 
-
-
 const useLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
