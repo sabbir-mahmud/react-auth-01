@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import app from "../Firebase/Firebase.init";
 
@@ -35,6 +35,13 @@ const useRegister = () => {
         });
     }
 
+    const verifyEmail = () => {
+        sendEmailVerification(auth.currentUser)
+            .then(() => {
+                console.log('Email Verification Sent');
+            })
+    }
+
     // register button
     const handleRegister = (e) => {
         e.preventDefault();
@@ -44,6 +51,7 @@ const useRegister = () => {
             .then((result) => {
                 console.log(result)
                 handleUserName();
+                verifyEmail();
             })
             .catch((error) => console.error(error))
     }

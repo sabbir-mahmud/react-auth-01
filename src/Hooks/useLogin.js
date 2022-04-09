@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { getAuth, FacebookAuthProvider, GoogleAuthProvider, GithubAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import app from "../Firebase/Firebase.init";
@@ -6,6 +6,8 @@ import useError from "./useError";
 import useUser from "./useUser";
 // Google auth provider
 const provider = new GoogleAuthProvider();
+const fbProvider = new FacebookAuthProvider();
+const gitProvider = new GithubAuthProvider();
 const auth = getAuth(app);
 
 const useLogin = () => {
@@ -48,7 +50,28 @@ const useLogin = () => {
             .catch((error) => console.error(error))
     }
 
-    return [user, error, handleEmail, handlePassword, handleSignIn, googleLogin];
+    // logIn with facebook
+    const facebookLogin = () => {
+        signInWithPopup(auth, fbProvider)
+            .then(result => {
+                setUser(result.user);
+                setError(null);
+                navigate('/home');
+            })
+            .catch((error) => console.error(error))
+    }
+    // logIn with github
+    const githubLogin = () => {
+        signInWithPopup(auth, gitProvider)
+            .then(result => {
+                setUser(result.user);
+                setError(null);
+                navigate('/home');
+            })
+            .catch((error) => console.error(error))
+    }
+
+    return [user, error, handleEmail, handlePassword, handleSignIn, googleLogin, facebookLogin, githubLogin];
 }
 
 export default useLogin;

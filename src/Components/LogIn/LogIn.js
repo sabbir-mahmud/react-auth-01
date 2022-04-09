@@ -6,7 +6,7 @@ const LogIn = () => {
     // signUp navigate button
     const navigate = useNavigate();
     const handleRegisterlink = () => navigate('/register');
-    const [user, error, handleEmail, handlePassword, handleSignIn, googleLogin] = useLogin();
+    const [user, error, handleEmail, handlePassword, handleSignIn, googleLogin, facebookLogin, githubLogin] = useLogin();
 
     return (
         <div className="w-full mt-14 mx-auto max-w-xs">
@@ -41,6 +41,12 @@ const LogIn = () => {
 
                 <button onClick={googleLogin} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-7 rounded focus:outline-none focus:shadow-outline" type="button">
                     Google
+                </button>
+                <button onClick={facebookLogin} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-5 my-7 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Facebook
+                </button>
+                <button onClick={githubLogin} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-5 my-7 rounded focus:outline-none focus:shadow-outline" type="button">
+                    github
                 </button>
             </form>
         </div>
