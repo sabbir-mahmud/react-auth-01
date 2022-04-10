@@ -1,6 +1,6 @@
 import { getAuth, FacebookAuthProvider, GoogleAuthProvider, GithubAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import app from "../Firebase/Firebase.init";
 import useError from "./useError";
 import useUser from "./useUser";
@@ -10,13 +10,17 @@ const fbProvider = new FacebookAuthProvider();
 const gitProvider = new GithubAuthProvider();
 const auth = getAuth(app);
 
+
+
+
 const useLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useError();
     const [user, setUser] = useUser();
-
     const navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/home";
 
     // get email
     const handleEmail = (e) => setEmail(e.target.value);
@@ -31,7 +35,7 @@ const useLogin = () => {
             .then((result) => {
                 setUser(result.user)
                 setError(null);
-                navigate('/home');
+                navigate(from, { replace: true });
 
             })
             .catch((error) => {
@@ -45,7 +49,7 @@ const useLogin = () => {
             .then(result => {
                 setUser(result.user);
                 setError(null);
-                navigate('/home');
+                navigate(from, { replace: true });
             })
             .catch((error) => console.error(error))
     }
@@ -56,7 +60,7 @@ const useLogin = () => {
             .then(result => {
                 setUser(result.user);
                 setError(null);
-                navigate('/home');
+                navigate(from, { replace: true });
             })
             .catch((error) => console.error(error))
     }
@@ -66,7 +70,7 @@ const useLogin = () => {
             .then(result => {
                 setUser(result.user);
                 setError(null);
-                navigate('/home');
+                navigate(from, { replace: true });
             })
             .catch((error) => console.error(error))
     }

@@ -1,12 +1,15 @@
 //  imports 
 import { useNavigate } from 'react-router-dom';
+import AuthenticatedUser from '../../Hooks/useAuthUser';
 import useLogin from '../../Hooks/useLogin';
 
 const LogIn = () => {
     // signUp navigate button
     const navigate = useNavigate();
     const handleRegisterlink = () => navigate('/register');
-    const [user, error, handleEmail, handlePassword, handleSignIn, googleLogin, facebookLogin, githubLogin] = useLogin();
+    const [users, error, handleEmail, handlePassword, handleSignIn, googleLogin, facebookLogin, githubLogin] = useLogin();
+    const [user] = AuthenticatedUser();
+    console.log(user);
 
     return (
         <div className="w-full mt-14 mx-auto max-w-xs">

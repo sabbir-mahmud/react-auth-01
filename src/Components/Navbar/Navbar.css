@@ -1,0 +1,28 @@
+/* Header area background color */
+.header {
+    background: #1C2B35;
+    padding: 1% 0;
+}
+
+.logo-nav {
+    color: #ffff;
+}
+
+/* header navbar area d flex */
+.header-nav {
+    background: #1C2B35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links a {
+    color: #ffff;
+    text-decoration: none;
+    margin-left: 40px;
+}
+
+.nav-links a:hover {
+    color: blue;
+    transition: .5s ease;
+}
